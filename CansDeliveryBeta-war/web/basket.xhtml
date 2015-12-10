@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./MyTemplate.xhtml">
+
+            
+
+            
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form> 
+                        <br>Contenu du panier : </br>
+                        <br></br>
+                        <table>
+                            <tr><th></th><th>Name</th> <th>Unit price</th> <th>Quantity</th> <th> </th> <th> </th> <th> Price</th> </tr>
+                            <c:forEach items="#{orderManager.listOrder}" var="item">
+                                <tr>
+                                    <td><img src="#{item.value.can.picture}" width="40" height="40"/></td>
+                                    <td>#{item.value.can.getTradCan().get(internationalizationMB.locale.toString()).getName()}</td>  
+                                    <td>#{item.value.can.price}€</td>  
+                                    <td> <h:inputText value="#{item.value.quantity}" ></h:inputText></td> 
+                                    <td><h:commandButton value = "refresh" ></h:commandButton></td> 
+                                    <td><h:commandButton value = "delete" action="#{orderManager.deleteItem(item.key)}"></h:commandButton></td> 
+                                    <td>#{item.value.price = orderManager.calculatePrix(item.value.quantity, item.value.can.price)}€</td> 
+                                </tr>
+                            </c:forEach>
+                        </table>
+                        <br><h:outputText value ="Total price : "></h:outputText>
+                            #{orderManager.CalculateTotalPrice()} €</br>
+                        <br><h:outputText value ="Discount price : "></h:outputText>
+                            #{orderManager.discount(orderManager.CalculateTotalPrice())} €</br>
+                        <br><h:commandButton value = "Commander" action="#{orderManager.saveOrder(customerManager.getCustomerToManage())}"></h:commandButton></br>
+                    </h:form>
+                </f:view>
+                
+                    
+
+            </ui:define>
+
+           
+        </ui:composition>
+
+    </body>
+</html>

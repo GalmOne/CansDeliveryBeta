@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./MyTemplate.xhtml">
+
+            <ui:define name="content">
+                
+                <f:view>
+                <h:form>
+                <fieldset>
+                    <legend><h:outputLabel id="titleLoginLabel" value="Connexion au site" ></h:outputLabel></legend>
+                    <h:outputLabel value="Login : " for="loginLabel"></h:outputLabel>
+                    
+                    <h:inputText id="loginLogin" 
+                                 value="#{customerManager.customerToManage.login}"
+                                 required="true"
+                                 requiredMessage="Login ne peut pas être vide. "
+                                 validatorMessage="Le login doit comporter entre 5 et 30 caractères">
+                    <f:validateLength minimum="1" maximum="30"/>
+                    </h:inputText>
+                    <h:message for="loginLogin"></h:message>
+                    
+                    <br></br>
+                    
+                    <h:outputLabel value="Password : " for="passwordLoginLabel"></h:outputLabel>
+                    
+                    <h:inputSecret id="passwordLogin" 
+                                   value="#{customerManager.customerToManage.password}"
+                                   required="true" 
+                                   requiredMessage="Le password est obligatoire. " 
+                                   validatorMessage="Le password doit comporter entre 5 et 30 caractères">
+                          
+                    <f:validateLength minimum="1" maximum="30"/>                   
+                    </h:inputSecret>
+                    <h:message for="passwordLogin"></h:message>
+                    
+                    <br></br><br></br>
+                    
+                    <h:commandButton value="Connexion" action="#{customerManager.verifyLogin()}"></h:commandButton>
+                </fieldset> 
+                                   
+               </h:form>
+                </f:view>
+                
+                <f:view>
+                <h:form>
+                     <h:commandLink value="S'inscrire" action="faces/index.xhtml"></h:commandLink> 
+                     </h:form>
+                </f:view>
+
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

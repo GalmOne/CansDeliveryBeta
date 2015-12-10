@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view locale= "#{internationalizationMB.locale}" />
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <f:loadBundle basename="languages.lang" var="msg"/>
+        <div id="top">
+            <ui:insert name="top">
+                
+                
+                
+                
+                <f:view>
+                     <h:form>
+                    <img src="resources/Titre.png" width="523" height="109" alt="CansDelivery"/>
+                    <div id="someDiv" style="display:inline; text-align:right">
+                        <h:commandButton image="resources/account.png" id="buttonCompte" action="#{customerManager.checkConnexion()}" style="position:relative; margin-left: 200px"></h:commandButton>   
+                        <h:commandButton image="resources/panier.png" id="buttonPanier" action="faces/basket.xhtml" style="position:relative; margin-left:50px"></h:commandButton>
+                    </div>
+                    
+                </h:form>
+                </f:view>
+               
+                
+                
+                <f:view>
+                    <h:form>
+                    <ul >
+                    <li id="liCategorie"><h:commandLink action="faces/index.xhtml" value="#{msg.Home}" >  </h:commandLink></li>
+                    <li id="liCategorie"><h:commandLink action="faces/listCan.xhtml" value="#{msg.AllSodas}" >  </h:commandLink></li>
+                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkSodas}">  </h:commandLink></li>
+                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkBoissonJuice }">  </h:commandLink></li>
+                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkBeer }">  </h:commandLink></li>
+                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkEnergyDrinks }">  </h:commandLink></li>
+                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.LimitedEdition }">  </h:commandLink></li>   
+                    </ul>
+                    </h:form>
+                </f:view>
+
+                
+                 
+                
+            </ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <f:view>
+                    <h:form>
+                        <li><h:commandLink action="faces/index.xhtml" value="#{msg.Home}" >  </h:commandLink></li>
+                        <li><h:commandLink action="faces/listCan.xhtml" value="#{msg.AllSodas}" >  </h:commandLink></li>
+                        <c:forEach items="#{drinkTypeManager.getCategories()}" var="cat">
+                            <li> <h:commandLink action="#{canManager.getCanByCategory(cat)}" value="#{cat.getTraductionType().get(internationalizationMB.locale.toString()).getDescritpion()}" >  </h:commandLink>  </li>
+                        </c:forEach>
+                    </h:form> 
+                </f:view>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <f:view locale="#{InternationalizationMB.locale}" >
+                    <h:form>
+                        <h:outputText value="#{msg.Langage}" />
+                        <h:commandButton image="resources/EnglishFlag.png" id="buttonEnglish" action="#{internationalizationMB.setToEnglish()}" style="margin-left: 10px" ></h:commandButton>
+                        <h:commandButton image="resources/FrenchFlag.png" id="buttonFrench"  action="#{internationalizationMB.setToFrench()}" style="margin-left: 10px" ></h:commandButton>
+                    </h:form>
+                </f:view>
+            
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
