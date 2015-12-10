@@ -37,7 +37,7 @@
                             #{orderManager.CalculateTotalPrice()} €</br>
                         <br><h:outputText value ="Discount price : "></h:outputText>
                             #{orderManager.discount(orderManager.CalculateTotalPrice())} €</br>
-                        <br><h:commandButton value = "Commander" action="#{orderManager.saveOrder(customerManager.getCustomerToManage())}"></h:commandButton></br>
+                        <br><h:commandButton value = "Commander" action="#{orderManager.saveOrder(customerManager.getCustomerToManage(), customerManager.isConnected())}"></h:commandButton></br>
                     </h:form>
                 </f:view>
                 

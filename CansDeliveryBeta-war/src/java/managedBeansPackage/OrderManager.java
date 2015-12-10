@@ -44,7 +44,7 @@ public class OrderManager implements Serializable{
     
     public void addItem(Can c)
     {                     
-        OrderContents item = new OrderContents(c,1);
+        OrderContents item = new OrderContents(c,1, orderToManage);
         
         if(listOrder.containsKey(c.getId()))
             listOrder.get(c.getId()).setQuantity(listOrder.get(c.getId()).getQuantity()+1);
@@ -86,17 +86,27 @@ public class OrderManager implements Serializable{
     
     
     //Méthode pour sauver la commande dans la base de données. 
-    public void saveOrder(Customer c)
+    public String saveOrder(Customer c, boolean connected)
     {
         System.out.println(c.getName());
         
-        Date date = Calendar.getInstance().getTime();
-        orderToManage.setCreationDate(date);
-        orderToManage.setStatus("Validée");
-        orderToManage.setClient(c);
-        
-        saveSessionBean.saveOrder(orderToManage);
+        if(connected)
+        {
+            Date date = Calendar.getInstance().getTime();
+            orderToManage.setCreationDate(date);
+            orderToManage.setNumber(Integer.SIZE);
+            orderToManage.setStatus("Validée");
+            orderToManage.setClient(c);
+
+            saveSessionBean.saveOrder(orderToManage);
+            saveSessionBean.saveListOrder(listOrder);
+        return "faces/account.xhtml";
+        }
+        else     
+            return "faces/login.xhtml";
     }
+    
+    
     
     public HashMap<Integer, OrderContents> getListOrder ()
     {

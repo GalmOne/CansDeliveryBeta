@@ -7,6 +7,7 @@ package sessionBeanPackage;
 
 import entityPackage.Orders;
 import entityPackage.Customer;
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,10 +33,11 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
     public void addOrder (model.Order order)
     {
         Orders entityOrder = new Orders ();
-        entityOrder.setNumber(Integer.SIZE);
+        entityOrder.setNumber(order.getNumber());
         Customer cust = new Customer ();
         // passer d'un client modèle à un cllient entity
         cust.setId(order.getClient().getId());
+        /*
         cust.setName(order.getClient().getName());
         cust.setFirstname(order.getClient().getFirstname());
         cust.setLogin(order.getClient().getLogin());
@@ -47,12 +49,14 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
         cust.setAdrStreet(order.getClient().getStreet());
         cust.setAdrPostecode(order.getClient().getPosteCode());
         cust.setAdrCity(order.getClient().getCity());
-              
+          */    
         entityOrder.setCustomer(cust);
         entityOrder.setCreationdate(order.getCreationDate());
+        entityOrder.setRemise(BigDecimal.ZERO);
         entityOrder.setStatus(order.getStatus());
         
         create(entityOrder);
         
+        System.out.println("->>>>>>>>>>>>>>>>>>>>>>>>>"+entityOrder.getNumber());
     }
 }

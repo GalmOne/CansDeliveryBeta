@@ -5,6 +5,7 @@
  */
 package ejb;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.EJB;
 
@@ -14,6 +15,7 @@ import model.*;
 import sessionBeanPackage.CanFacadeLocal;
 import sessionBeanPackage.CustomerFacadeLocal;
 import sessionBeanPackage.DrinktypeFacadeLocal;
+import sessionBeanPackage.OrdercontentsFacadeLocal;
 import sessionBeanPackage.OrdersFacadeLocal;
 
 
@@ -24,6 +26,8 @@ import sessionBeanPackage.OrdersFacadeLocal;
  */
 @Stateless
 public class SaveSessionBean implements SaveSessionBeanLocal {
+    @EJB
+    private OrdercontentsFacadeLocal ordercontentsFacade;
     @EJB
     private DrinktypeFacadeLocal drinktypeFacade;
     @EJB
@@ -63,5 +67,10 @@ public class SaveSessionBean implements SaveSessionBeanLocal {
     public List<Can> getCanByCategory(DrinkType cat)
     {
         return canFacade.getCanByCategory(cat);
+    }
+    
+    public void saveListOrder(HashMap<Integer, OrderContents> listOrder)
+    {
+        ordercontentsFacade.addOrderContents(listOrder);
     }
 }

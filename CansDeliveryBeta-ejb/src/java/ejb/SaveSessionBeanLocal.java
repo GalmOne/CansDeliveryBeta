@@ -6,12 +6,14 @@
 package ejb;
 
 
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Local;
 import model.Can;
 import model.Customer;
 import model.DrinkType;
 import model.Order;
+import model.OrderContents;
 
 /**
  *
@@ -32,4 +34,6 @@ public interface SaveSessionBeanLocal {
     public List<DrinkType> getCategories();
     
     public List<Can> getCanByCategory(DrinkType cat);
+    
+    public void saveListOrder(HashMap<Integer, OrderContents> listOrder);
 }

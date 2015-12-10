@@ -82,6 +82,14 @@ public class CustomerManager implements Serializable{
         connected = false;
         return "faces/login.xhtml";
     }
+
+    public static boolean isConnected() {
+        return connected;
+    }
+
+    public static void setConnected(boolean connected) {
+        CustomerManager.connected = connected;
+    }
     
     
 }

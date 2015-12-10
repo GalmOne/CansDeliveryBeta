@@ -6,6 +6,7 @@
 package sessionBeanPackage;
 
 import entityPackage.Ordercontents;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface OrdercontentsFacadeLocal {
     List<Ordercontents> findRange(int[] range);
 
     int count();
+    
+    public void addOrderContents (HashMap<Integer, model.OrderContents> listOrder);
     
 }
