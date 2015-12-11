@@ -14,13 +14,74 @@
            
 
             <ui:define name="content">
-                <br><h:outputText value ="Nom : "></h:outputText>
-                    <h:inputText value = "#{customerManager.customerToManage.name}" ></h:inputText></br>
-                    <br><h:outputText value ="Prenom : "></h:outputText>
-                        <h:inputText value = "#{customerManager.customerToManage.firstname}" ></h:inputText></br>
-                    <br><h:outputText value ="Date de naissance : "></h:outputText>
-                        <h:inputText value = "#{customerManager.customerToManage.birthdate}" ></h:inputText></br>
-                    
+                <f:view>
+                    <h:form>
+                        <center>
+                        <fieldset>
+                        <legend><h:outputLabel id="titleLoginLabel" value="#{msg.Informations}" ></h:outputLabel></legend>
+                            <table> 
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.Name}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.name}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.FirstName}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.firstname}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.EmailAddress}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.email}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.MobileNumber}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.gsm}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.Number}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.number}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.Street}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.street}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.PostalCode}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.posteCode}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:outputText value ="#{msg.City}"></h:outputText>
+                                    </td><td>
+                                        <h:outputText value = "#{customerManager.customerToManage.city}" ></h:outputText>
+                                    </td>        
+                                </tr>
+                            </table>
+                            
+                        </fieldset>
+                            </center>
+                    </h:form>
+                </f:view>
             </ui:define>
 
             

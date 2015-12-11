@@ -54,10 +54,7 @@ public class SaveSessionBean implements SaveSessionBeanLocal {
         return customerFacade.getCustomer(id);
     }
     
-    public Integer verifyLogin(Customer c)
-    {
-        return customerFacade.verifyLogin(c);
-    }
+    
     
     public List<DrinkType> getCategories()
     {
@@ -73,4 +70,23 @@ public class SaveSessionBean implements SaveSessionBeanLocal {
     {
         ordercontentsFacade.addOrderContents(listOrder);
     }
+    
+    public Customer verifyLogin(String loginCheck, String passwordCheck)
+    {
+        return customerFacade.verifyLogin(loginCheck, passwordCheck);
+    }
+    
+    public Customer checkLogin(String loginCheck) {
+        return customerFacade.checkLogin(loginCheck);
+    }
+    
+    public Customer checkEmail (String emailCheck) {
+        return customerFacade.checkEmail(emailCheck);
+    }
+    
+    public void creationCustomer(Customer c) {
+        customerFacade.creationCustomer(c);   
+    }
+    
+    
 }

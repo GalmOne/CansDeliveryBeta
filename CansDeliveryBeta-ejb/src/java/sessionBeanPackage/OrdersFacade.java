@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -55,8 +56,8 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
         entityOrder.setRemise(BigDecimal.ZERO);
         entityOrder.setStatus(order.getStatus());
         
-        create(entityOrder);
-        
-        System.out.println("->>>>>>>>>>>>>>>>>>>>>>>>>"+entityOrder.getNumber());
+        create(entityOrder);             
     }
+    
+   
 }

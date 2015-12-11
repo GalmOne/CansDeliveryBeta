@@ -32,5 +32,11 @@ public interface CustomerFacadeLocal {
     
     public model.Customer getCustomer(Integer id);
     
-    public Integer verifyLogin(model.Customer c);
+    public model.Customer verifyLogin(String loginCheck, String passwordCheck);
+    
+    public model.Customer checkLogin(String loginCheck);
+    
+    public model.Customer checkEmail (String emailCheck);
+    
+    public void creationCustomer (model.Customer c);
 }

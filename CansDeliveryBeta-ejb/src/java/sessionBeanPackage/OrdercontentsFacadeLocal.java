@@ -33,4 +33,6 @@ public interface OrdercontentsFacadeLocal {
     
     public void addOrderContents (HashMap<Integer, model.OrderContents> listOrder);
     
+    public Integer getMaxNumberOrder();
+    
 }

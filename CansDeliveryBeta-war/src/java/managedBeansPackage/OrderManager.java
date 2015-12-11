@@ -92,14 +92,23 @@ public class OrderManager implements Serializable{
         
         if(connected)
         {
-            Date date = Calendar.getInstance().getTime();
+            if(listOrder.isEmpty())
+            {
+                return "faces/listCan.xhtml";
+            }
+            else
+            {
+                Date date = Calendar.getInstance().getTime();
             orderToManage.setCreationDate(date);
             orderToManage.setNumber(Integer.SIZE);
             orderToManage.setStatus("Validée");
             orderToManage.setClient(c);
 
-            saveSessionBean.saveOrder(orderToManage);
+            saveSessionBean.saveOrder(orderToManage);         
             saveSessionBean.saveListOrder(listOrder);
+            }
+            
+            
         return "faces/account.xhtml";
         }
         else     
@@ -117,5 +126,7 @@ public class OrderManager implements Serializable{
     {
         return discountSessionBean.calculateDiscount(tot);
     }
+    
+    
     
 }

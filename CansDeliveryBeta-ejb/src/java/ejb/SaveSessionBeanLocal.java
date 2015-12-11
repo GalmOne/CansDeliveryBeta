@@ -29,11 +29,18 @@ public interface SaveSessionBeanLocal {
     
     public Customer getCustomer(Integer id);
     
-    public Integer verifyLogin(Customer c);
-    
     public List<DrinkType> getCategories();
     
     public List<Can> getCanByCategory(DrinkType cat);
     
     public void saveListOrder(HashMap<Integer, OrderContents> listOrder);
+    
+    public Customer verifyLogin(String loginCheck, String passwordCheck);
+    
+    public Customer checkLogin(String loginCheck);
+    
+    public Customer checkEmail (String emailCheck);
+    
+    public void creationCustomer(Customer c);
+   
 }
