@@ -21,7 +21,7 @@ public class ValidatorCodePostal implements Validator {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //Integer entryInt = (Integer) value;
         //String entry = Integer.toString(entryInt);
-        String entry = (String) value;
+        String entry = String.valueOf(value);
          
         if (entry.length()==0) {
             

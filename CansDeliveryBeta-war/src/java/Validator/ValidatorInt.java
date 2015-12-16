@@ -22,7 +22,7 @@ public class ValidatorInt implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String entry = (String) value;
+        String entry = String.valueOf(value);
         
         
         if (!(entry.matches("[^-]\\s*[1-9][0-9]*"))){

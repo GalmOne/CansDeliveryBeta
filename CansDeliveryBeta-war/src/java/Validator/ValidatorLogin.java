@@ -24,7 +24,7 @@ public class ValidatorLogin implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String entry = (String) value;
+        String entry = String.valueOf(value);
                 
         if (entry.length()==0) {
             String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorLoginNull}", String.class);

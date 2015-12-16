@@ -21,10 +21,10 @@ public class ValidatorPasswordSame implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         
-        String confirm =(String) value;
+        String confirm =String.valueOf(value);
         
         UIInput confirmComponent = (UIInput) component.getAttributes().get("password");
-        String password = (String) confirmComponent.getValue();
+        String password = String.valueOf(confirmComponent.getValue());
         
         if (confirm.length()==0) {
             String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPasswordNull}", String.class);
