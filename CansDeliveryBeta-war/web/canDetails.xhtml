@@ -17,7 +17,9 @@
                 <table>
                     <tr> <td colspan="2"> <h:graphicImage value="#{canManager.canToManage.picture}" width="250" height="250"></h:graphicImage></td>  <td></td> 
                         <td><h:outputText value="#{msg.PriceUnit}"></h:outputText ><h:outputText value="#{canManager.canToManage.price}" converter="myPriceConverter"></h:outputText>
-                            <br><h:outputText value="#{msg.Quantity}"></h:outputText ><h:inputText value="#{orderManager.quantity}"></h:inputText></br>
+                            <br><h:outputText value="#{msg.Quantity}"></h:outputText ><h:inputText value="#{orderManager.quantity}">
+                                    <f:validator validatorId="quantityValidator"></f:validator></h:inputText></br>
+                                <br><h:message for="qtyEntry"></h:message></br>
                             <br><h:commandButton value="#{msg.addBasket}" action="#{orderManager.addfewItems(canManager.canToManage, orderManager.quantity)}"></h:commandButton></br></td> </tr>                   
                     <tr> <td><h:outputText value="#{msg.Name}"></h:outputText></td> <td>#{canManager.canToManage.getTradCan().get(internationalizationMB.locale.toString()).getName()}</td> <td></td> <td></td> </tr>
                     <tr> <td><h:outputText value="#{msg.Description}"></h:outputText></td> <td>#{canManager.canToManage.getTradCan().get(internationalizationMB.locale.toString()).getDscription()}</td> <td></td> <td></td> </tr>

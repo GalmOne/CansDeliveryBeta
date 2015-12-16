@@ -35,10 +35,13 @@
                                     <td><h:outputText value="#{item.value.can.getTradCan().get(internationalizationMB.locale.toString()).getName()}" ></h:outputText></td>  
                                     <td><h:outputText value="#{item.value.can.price}" converter="myPriceConverter"></h:outputText></td>  
                                     
-                                    <td> <h:inputText value="#{item.value.quantity}" ></h:inputText></td> 
+                                    <td> <h:inputText id="qtyEntry" value="#{item.value.quantity}" >
+                                        <f:validator validatorId="quantityValidator"></f:validator></h:inputText></td> 
+                                    <td><h:message for="qtyEntry"></h:message></td>
                                     <td><h:commandButton value = "#{msg.Refresh}" ></h:commandButton></td> 
                                     <td><h:commandButton value = "#{msg.Delete}" action="#{orderManager.deleteItem(item.key)}"></h:commandButton></td> 
-                                    <td><h:outputText value="#{item.value.price = orderManager.calculatePrix(item.value.quantity, item.value.can.price)}" converter="myPriceConverter"></h:outputText></td> 
+                                    <td><h:outputText value="#{item.value.price = orderManager.calculatePrix(item.value.quantity, item.value.can.price)}" converter="myPriceConverter"></h:outputText></td>
+                                    
                                 </tr>
                             </c:forEach>
                         </table>
