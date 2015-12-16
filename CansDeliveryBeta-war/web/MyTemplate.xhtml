@@ -30,7 +30,7 @@
                             <h:outputText value ="#{customerManager.customerToManage.firstname} " ></h:outputText>
                             <h:outputText value ="#{customerManager.customerToManage.name}" style="margin-right: 400px"></h:outputText>
                         </c:if>
-                        <h:outputText value ="#{orderManager.totalPrice} €" style="margin-right: 2px"></h:outputText>
+                        <h:outputText value ="#{orderManager.totalPrice}" converter="myPriceConverter" style="margin-right: 2px"></h:outputText>
                         <h:commandButton image="resources/panier.png" id="buttonPanier" action="faces/basket.xhtml" ></h:commandButton>
                     </div>
                     

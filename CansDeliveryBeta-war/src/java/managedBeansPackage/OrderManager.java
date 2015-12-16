@@ -37,6 +37,7 @@ public class OrderManager implements Serializable{
     private int quantity = 1;
     private double remise=0;
     private double totalPrice = 0;
+    private boolean purchase = false; 
     
     private HashMap<Integer, OrderContents> listOrder = new HashMap <> ();
      
@@ -80,6 +81,8 @@ public class OrderManager implements Serializable{
     public String deleteItem (Integer k)
     {
         listOrder.remove(k);
+        if(listOrder.isEmpty())
+            totalPrice=0;
         return "faces/basket.xhtml";
     }
     
@@ -134,8 +137,12 @@ public class OrderManager implements Serializable{
             
         return "faces/account.xhtml";
         }
-        else     
+        else
+        {
+            purchase = false;
             return "faces/login.xhtml";
+        }
+           
     }
     
     
@@ -181,6 +188,14 @@ public class OrderManager implements Serializable{
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public boolean isPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(boolean purchase) {
+        this.purchase = purchase;
     }
     
     

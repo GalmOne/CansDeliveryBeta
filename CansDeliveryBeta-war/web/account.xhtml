@@ -17,14 +17,19 @@
                 <f:view>
                     <h:form>
                         <c:if test="#{customerManager.isWelcomeMess()}">
-                        <h:outputLabel value="#{msg.WelcomeMessage} #{customerManager.WelcomeMessage()}" for="WelcomeMessageLabel"></h:outputLabel>
+                            <h:outputLabel value="#{msg.WelcomeMessage} #{customerManager.WelcomeMessage()}" for="WelcomeMessageLabel"></h:outputLabel>
                         </c:if>
+                        
+                        <c:if test="#{orderManager.purchase}">
+                            <h:outputLabel value="#{msg.OrderSuccess} #{orderManager.setPurchase(false)}" ></h:outputLabel>
+                        </c:if>
+                        
                         <br></br>
-                        <br><h:outputText value="Mon compte :"></h:outputText></br>
+                        <br><h:outputText value="#{msg.Account}"></h:outputText></br>
                         <br></br>
-                        <br><h:commandButton value = "Modifier mon compte" action="faces/customerDetails.xhtml">  </h:commandButton></br>
-                        <br><h:commandButton value = "Mes commandes" action="faces/myOrders.xhtml">  </h:commandButton></br>
-                        <br><h:commandButton value = "Se déconecter" action="#{customerManager.deconnexion()}"></h:commandButton></br>
+                        <br><h:commandButton value = "#{msg.AccountDetails}" action="faces/customerDetails.xhtml">  </h:commandButton></br>
+                        <br><h:commandButton value = "#{msg.Orders}" action="faces/myOrders.xhtml">  </h:commandButton></br>
+                        <br><h:commandButton value = "#{msg.LogOut}" action="#{customerManager.deconnexion()}"></h:commandButton></br>
                     </h:form>
                 </f:view>
 

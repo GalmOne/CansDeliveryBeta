@@ -57,8 +57,8 @@
 
                             <h:messages globalOnly="true" infoClass="info" />
                             <br></br>    
-                            <h:commandButton value="Connexion" action="#{customerManager.verifyLogin()}"></h:commandButton>
-                            <h:link id="linkInscription" value="inscription" outcome="faces/inscription" ></h:link>
+                            <h:commandButton value="#{msg.Connexion}" action="#{customerManager.verifyLogin()}"></h:commandButton>
+                            <h:link id="linkInscription" value="#{msg.Inscription}" outcome="faces/inscription" ></h:link>
                             </fieldset>
                         </center> 
                     </h:form>

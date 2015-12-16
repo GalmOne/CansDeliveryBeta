@@ -17,36 +17,48 @@
             <ui:define name="content">
                 <f:view>
                     <h:form> 
-                        <br>Contenu du panier : </br>
+                        <br><h:outputText value="#{msg.BasketContent}" ></h:outputText></br>
                         <br></br>
                         <c:if test="#{orderManager.listOrder.size() == 0}">
-                            Votre panier est vide ! 
+                            <h:outputText value="#{msg.BasketEmpty}" ></h:outputText>
                         </c:if>
                         <c:if test="#{orderManager.listOrder.size() > 0}">
                             <table>
-                            <tr><th></th><th>Name</th> <th>Unit price</th> <th>Quantity</th> <th> </th> <th> </th> <th> Price</th> </tr>
+                            <tr><th></th><th><h:outputText value="#{msg.CanName}" ></h:outputText></th> 
+                                        <th><h:outputText value="#{msg.UnitPrice}" ></h:outputText></th> 
+                                        <th><h:outputText value="#{msg.Quantity}" ></h:outputText></th> 
+                                        <th> </th> <th> </th> 
+                                        <th><h:outputText value="#{msg.Price}" ></h:outputText></th> </tr>
                             <c:forEach items="#{orderManager.listOrder}" var="item">
                                 <tr>
                                     <td><img src="#{item.value.can.picture}" width="40" height="40"/></td>
-                                    <td>#{item.value.can.getTradCan().get(internationalizationMB.locale.toString()).getName()}</td>  
-                                    <td>#{item.value.can.price}€</td>  
+                                    <td><h:outputText value="#{item.value.can.getTradCan().get(internationalizationMB.locale.toString()).getName()}" ></h:outputText></td>  
+                                    <td><h:outputText value="#{item.value.can.price}" converter="myPriceConverter"></h:outputText></td>  
                                     
                                     <td> <h:inputText value="#{item.value.quantity}" ></h:inputText></td> 
-                                    <td><h:commandButton value = "refresh" ></h:commandButton></td> 
-                                    <td><h:commandButton value = "delete" action="#{orderManager.deleteItem(item.key)}"></h:commandButton></td> 
-                                    <td>#{item.value.price = orderManager.calculatePrix(item.value.quantity, item.value.can.price)}€</td> 
+                                    <td><h:commandButton value = "#{msg.Refresh}" ></h:commandButton></td> 
+                                    <td><h:commandButton value = "#{msg.Delete}" action="#{orderManager.deleteItem(item.key)}"></h:commandButton></td> 
+                                    <td><h:outputText value="#{item.value.price = orderManager.calculatePrix(item.value.quantity, item.value.can.price)}" converter="myPriceConverter"></h:outputText></td> 
                                 </tr>
                             </c:forEach>
                         </table>
-                        <br><h:outputText value ="Total price : "></h:outputText>
-                            <h:outputText value ="#{orderManager.CalculateTotalPrice()} €"> <f:convertNumber minFractionDigits="2" /></h:outputText></br>
-                        <br><h:outputText value ="Discount : "></h:outputText>
-                            <h:outputText value ="#{orderManager.discount(orderManager.CalculateTotalPrice())} €"> <f:convertNumber minFractionDigits="2" /></h:outputText></br>
-                        <br><h:outputText value ="Discount price : "></h:outputText>
-                            <h:outputText value ="#{orderManager.getDiscountPrice(orderManager.CalculateTotalPrice())} €"> <f:convertNumber minFractionDigits="2" /></h:outputText></br>
-           
-                        <br><h:commandButton value = "Commander" action="#{orderManager.saveOrder(customerManager.getCustomerToManage(), customerManager.isConnected())}"></h:commandButton></br>
+                        <br><h:outputText value ="#{msg.SubTotal}"></h:outputText>
+                            <h:outputText value ="#{orderManager.CalculateTotalPrice()}" converter="myPriceConverter"> </h:outputText></br>
+                        <br><h:outputText value ="#{msg.Discount}"></h:outputText>
+                            <h:outputText value ="#{orderManager.discount(orderManager.CalculateTotalPrice())}" converter="myPriceConverter"> </h:outputText></br>
+                        <br><h:outputText value ="#{msg.TotalPrice}"></h:outputText>
+                            <h:outputText value ="#{orderManager.getDiscountPrice(orderManager.CalculateTotalPrice())}" converter="myPriceConverter"> </h:outputText></br>
+                        
+                            <br><h:commandButton value = "#{msg.Commander}" action="#{orderManager.setPurchase(true)}"></h:commandButton></br>
                             
+                            <c:if test="#{orderManager.purchase}">
+                                <bt></bt><br></br>
+                                <h:outputText value="#{msg.Confirmation}"></h:outputText>
+                                <br><h:commandButton value = "#{msg.Yes}" action="#{orderManager.saveOrder(customerManager.getCustomerToManage(), customerManager.isConnected())}"></h:commandButton></br>
+                                <h:commandButton value = "#{msg.No}" action="#{orderManager.setPurchase(false)}"></h:commandButton>
+                       
+                            </c:if>
+                             
                         </c:if>
                         </h:form>
                 </f:view>

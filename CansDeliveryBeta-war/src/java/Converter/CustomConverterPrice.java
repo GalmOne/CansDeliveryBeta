@@ -5,6 +5,7 @@
  */
 package Converter;
 
+import java.text.DecimalFormat;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.FacesConverter;
@@ -13,7 +14,7 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Arnaud
  */
-@FacesConverter("PriceConverter")
+@FacesConverter("myPriceConverter")
 public class CustomConverterPrice implements javax.faces.convert.Converter {
 
     @Override
@@ -23,9 +24,10 @@ public class CustomConverterPrice implements javax.faces.convert.Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        double prix = (double) value;
-        prix = Math.floor(prix * 100) / 100;
-        return String.valueOf(prix) + " €";
+        
+        double price = (double) value;       
+        DecimalFormat df = new DecimalFormat("0.00");      
+        return df.format(price)+" €";
         
     }
     

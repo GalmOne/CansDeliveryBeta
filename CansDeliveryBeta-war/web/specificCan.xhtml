@@ -27,33 +27,33 @@
     			</h:column>                      
     			<h:column>
     				<!-- column header -->
-    				<f:facet name="header">Description</f:facet>
+    				<f:facet name="header">#{msg.CanName}</f:facet>
     				<!-- row record -->
-    				#{c.getTradCan().get(internationalizationMB.locale.toString()).getName()}
+                                <h:outputText value="#{c.getTradCan().get(internationalizationMB.locale.toString()).getName()}"></h:outputText>
     			</h:column>
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Brand</f:facet>
+    				<f:facet name="header">#{msg.Brand}</f:facet>
     				<!-- row record -->
-    				#{c.brand}
+    				<h:outputText value="#{c.brand}"></h:outputText>
     			</h:column>
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Capacity</f:facet>
+    				<f:facet name="header">#{msg.Capacity}</f:facet>
     				<!-- row record -->
-    				#{c.capacity} cl
+    				<h:outputText value="#{c.capacity} cl"></h:outputText>
     			</h:column>
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Unit price</f:facet>
+    				<f:facet name="header">#{msg.UnitPrice}</f:facet>
     				<!-- row record -->
-    				#{c.price} €
+                                <h:outputText value="#{c.price}" converter="myPriceConverter"></h:outputText>
     			</h:column>
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Basket</f:facet>
+    				<f:facet name="header">#{msg.Basket}</f:facet>
     				<!-- row record -->
-                                <h:commandButton value = "add to basket" action="#{orderManager.addItem(c)}"></h:commandButton>
+                                <h:commandButton value = "#{msg.addBasket}" action="#{orderManager.addItem(c)}"></h:commandButton>
     			</h:column>
                             
                         </h:dataTable>
