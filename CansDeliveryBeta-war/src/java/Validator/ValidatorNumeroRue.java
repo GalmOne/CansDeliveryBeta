@@ -23,17 +23,23 @@ public class ValidatorNumeroRue implements Validator {
         String entry = (String) value;
                 
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("NumbersNull");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorNumbersNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if ((entry.length() > 3)) {
-            FacesMessage mess = new FacesMessage("NumbersCount");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorNumbersCount}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.matches("[0-9]*"))){
-            FacesMessage mess = new FacesMessage("NumbersOnlyNumbers");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorNumbersOnlyNumbers}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
     }   

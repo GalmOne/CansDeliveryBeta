@@ -32,6 +32,7 @@ public class CustomerManager implements Serializable{
     private static boolean connected = false;
     private String postalCodeString;
     private String birthdateString;
+    private static boolean welcomeMess = true;
     
     public CustomerManager() {
                
@@ -74,17 +75,20 @@ public class CustomerManager implements Serializable{
         }
     }
     
-    public void createAccount() throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-        Date d = sdf.parse(getBirthdateString());
+    public String createAccount() throws ParseException {
         
-                customerToManage.setPosteCode(Integer.parseInt(getPostalCodeString()));
-                //customerToManage.setBirthdate(null);
-                
-                saveSessionBean.creationCustomer(customerToManage);
-                
-                FacesMessage message = new FacesMessage( "Succès de l'inscription, bienvenue " + customerToManage.getName() + " " + customerToManage.getFirstname() + " !" );
-                FacesContext.getCurrentInstance().addMessage( null, message );
+        String test = getBirthdateString();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = sdf.parse(test);
+        
+        customerToManage.setBirthdate(d);
+        customerToManage.setPosteCode(Integer.parseInt(getPostalCodeString()));
+        //customerToManage.setBirthdate(null);
+
+        saveSessionBean.creationCustomer(customerToManage);
+                               
+        
+        return "faces/login.xhtml";
             
         }
     public String getPostalCodeString() {
@@ -110,7 +114,7 @@ public class CustomerManager implements Serializable{
     
     public String deconnexion()
     {
-        
+        welcomeMess = true;
         connected = false;
         return "faces/login.xhtml";
     }
@@ -123,5 +127,20 @@ public class CustomerManager implements Serializable{
         CustomerManager.connected = connected;
     }
     
+    public String WelcomeMessage () {
+        if (welcomeMess) {
+            welcomeMess = false;
+            return (customerToManage.getName() + "  " + customerToManage.getFirstname() + " !" );
+        } else {
+            return null;
+        }
+    }
     
+    public static boolean isWelcomeMess() {
+        return welcomeMess;
+    }
+    
+    public static void setWelcomeMess(boolean welcomeMess) {
+        CustomerManager.welcomeMess = welcomeMess;
+    }
 }

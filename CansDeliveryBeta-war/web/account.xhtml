@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -15,9 +16,14 @@
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                        <br>Mon compte : </br>
+                        <c:if test="#{customerManager.isWelcomeMess()}">
+                        <h:outputLabel value="#{msg.WelcomeMessage} #{customerManager.WelcomeMessage()}" for="WelcomeMessageLabel"></h:outputLabel>
+                        </c:if>
+                        <br></br>
+                        <br><h:outputText value="Mon compte :"></h:outputText></br>
                         <br></br>
                         <br><h:commandButton value = "Modifier mon compte" action="faces/customerDetails.xhtml">  </h:commandButton></br>
+                        <br><h:commandButton value = "Mes commandes" action="faces/myOrders.xhtml">  </h:commandButton></br>
                         <br><h:commandButton value = "Se déconecter" action="#{customerManager.deconnexion()}"></h:commandButton></br>
                     </h:form>
                 </f:view>

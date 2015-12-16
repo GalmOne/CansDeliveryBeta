@@ -16,11 +16,25 @@
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                        <br>Bienvenue sur notre site de vente de canettes :"Cans Delivery". 
-                        Vous trouverez un large choix de cannettes. Pour toute question concernant
-                        nos conditions de vente, n'hésitez pas à nous contacter par e-mail.</br>
+                        <center>
+                        <h:outputLabel value="#{msg.MessageWelcome1}" for="WelcomeMessage1Label"></h:outputLabel>
                         <br></br>
+                        <h:outputLabel value="#{msg.MessageWelcome2}" for="WelcomeMessage2Label"></h:outputLabel>
+                        <br></br>
+                        <h:outputLabel value="#{msg.MessageWelcome3}" for="WelcomeMessage3Label"></h:outputLabel>
+                        <br></br><br></br>
+                        <h:outputLabel value="#{msg.PrixWelcome1}" for="WelcomePrix1Label"></h:outputLabel>
+                        <br></br><br></br>
+                        <h:outputLabel value="#{msg.PrixWelcome2}" for="WelcomePrix2Label"></h:outputLabel>
+                        <br></br>
+                        <h:outputLabel value="#{msg.PrixWelcome3}" for="WelcomePrix3Label"></h:outputLabel>
+                        <br></br>
+                        <h:outputLabel value="#{msg.PrixWelcome4}" for="WelcomePrix4Label"></h:outputLabel>
+                        <br></br>
+                        <h:outputLabel value="#{msg.PrixWelcome5}" for="WelcomePrix5Label"></h:outputLabel>
+                        <br></br><br></br>
                         <img src="resources/homeCan.jpg" width="523" height="400" alt="CansDelivery"/>
+                        </center>
                     </h:form>
                 </f:view>
 

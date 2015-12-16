@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./MyTemplate.xhtml">
+            
+            
+
+            <ui:define name="content">
+                <f:view>
+                <h:form>
+                <table>
+                    <tr> <td colspan="2"> <h:graphicImage value="#{canManager.canToManage.picture}" width="300" height="300"></h:graphicImage></td>  <td></td> 
+                        <td><h:outputText value="#{canManager.canToManage.price} €"></h:outputText>
+                            <br><h:outputText value="Quantity : "></h:outputText ><h:inputText value="#{orderManager.quantity}"></h:inputText></br>
+                            <br><h:commandButton value="add to basket" action="#{orderManager.addfewItems(canManager.canToManage, orderManager.quantity)}"></h:commandButton></br></td> </tr>                   
+                    <tr> <td>Name : </td> <td>#{canManager.canToManage.getTradCan().get(internationalizationMB.locale.toString()).getName()}</td> <td></td> <td></td> </tr>
+                    <tr> <td>Description : </td> <td>#{canManager.canToManage.getTradCan().get(internationalizationMB.locale.toString()).getDscription()}</td> <td></td> <td></td> </tr>
+                    <tr> <td>Brand : </td> <td>#{canManager.canToManage.brand}</td> <td></td> <td></td> </tr>
+                    <tr> <td>Capacity : </td> <td>#{canManager.canToManage.capacity}</td> <td></td> <td></td> </tr>
+                      
+                </table>
+               
+                </h:form>
+                </f:view>
+                
+            </ui:define>
+
+            
+
+        </ui:composition>
+
+    </body>
+</html>

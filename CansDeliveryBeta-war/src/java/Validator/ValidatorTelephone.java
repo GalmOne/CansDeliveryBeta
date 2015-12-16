@@ -22,17 +22,23 @@ public class ValidatorTelephone implements Validator {
         String entry = (String) value;
                 
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("ErrorGsmNull");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorGsmNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.length() == 10)) {
-            FacesMessage mess = new FacesMessage("ErrorGsmCount");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorGsmCount}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.matches("[0-9]*"))){
-            FacesMessage mess = new FacesMessage("ErrorGsmOnlyNumbers");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorGsmOnlyNumbers}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
     }   

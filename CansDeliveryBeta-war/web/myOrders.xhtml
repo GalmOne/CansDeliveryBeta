@@ -2,64 +2,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./MyTemplate.xhtml">
 
-            
+           
 
             <ui:define name="content">
                 <f:view>
                     <h:form>
-                        <h:dataTable value="#{canManager.getCanList()}" var="c"
+                        <h:dataTable value="#{orderManager.getCustomerOrders(customerManager.getCustomerToManage())}" var="o"
     			styleClass="order-table"
     			headerClass="order-table-header"
     			rowClasses="order-table-odd-row,order-table-even-row"
                         >
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header"></f:facet>
+    				<f:facet name="header">Numéro de la commande</f:facet>
     				<!-- row record -->
-                                <h:commandButton image="#{c.picture}" action="#{canManager.canDetails(c)}"></h:commandButton>   
-    			</h:column>                      
-    			<h:column>
-    				<!-- column header -->
-    				<f:facet name="header">Description</f:facet>
-    				<!-- row record -->
-    				#{c.getTradCan().get(internationalizationMB.locale.toString()).getName()}
+                                #{o.number}  
     			</h:column>
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Brand</f:facet>
+    				<f:facet name="header">Date de création</f:facet>
     				<!-- row record -->
-    				#{c.brand}
-    			</h:column>
+                                #{o.creationDate.toString()}  
+    			</h:column> 
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Capacity</f:facet>
+    				<f:facet name="header">Status</f:facet>
     				<!-- row record -->
-    				#{c.capacity} cl
-    			</h:column>
+                                #{o.status}  
+    			</h:column> 
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Unit price</f:facet>
+    				<f:facet name="header">Montant</f:facet>
     				<!-- row record -->
-    				#{c.price} €
-    			</h:column>
+                                #{o.remise}  
+    			</h:column> 
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Basket</f:facet>
+    				<f:facet name="header">Details</f:facet>
     				<!-- row record -->
-                                <h:commandButton value = "add to basket" action="#{orderManager.addItem(c)}"></h:commandButton>
-    			</h:column>
-                            
+                                <h:commandButton value="Details" ></h:commandButton>
+    			</h:column> 
+                        
+                       
                         </h:dataTable>
                     </h:form>
                 </f:view>
-
             </ui:define>
 
             

@@ -4,33 +4,30 @@
  * and open the template in the editor.
  */
 package Validator;
-import javax.faces.bean.ManagedBean;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-@FacesValidator("ValidatorPasswordSame")
+
+@FacesValidator("ValidatorInt")
 @ManagedBean
 @SessionScoped
-public class ValidatorPasswordSame implements Validator {
+public class ValidatorInt implements Validator {
+
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String entry = (String) value;
         
-        String password =(String) value;
         
-        UIInput confirmComponent = (UIInput) component.getAttributes().get("confirm");
-        String confirm = (String) confirmComponent.getSubmittedValue();
-        
-            if (!password.equals(confirm)) {
-            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPasswordDifferent}", String.class);
-            
-            FacesMessage mess = new FacesMessage(msg);
+        if (!(entry.matches("[^-]\\s*[1-9][0-9]*"))){
+            FacesMessage mess = new FacesMessage("ErrorIntNegatif");
             throw new ValidatorException(mess);
-            }
+        }
     }
 }

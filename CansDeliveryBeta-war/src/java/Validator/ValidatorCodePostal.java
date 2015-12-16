@@ -24,18 +24,27 @@ public class ValidatorCodePostal implements Validator {
         String entry = (String) value;
          
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("ErrorPostalCodeNull");
+            
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPostalCodeNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.length() == 4)) {
-            FacesMessage mess = new FacesMessage("ErrorPostalCountNumbers");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPostalNumbersCount}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.matches("[0-9]{4}"))){
-            FacesMessage mess = new FacesMessage("ErrorPostalOnlyNumbers");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPostalOnlyNumbers}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
+                
+
     }   
 }

@@ -88,5 +88,10 @@ public class SaveSessionBean implements SaveSessionBeanLocal {
         customerFacade.creationCustomer(c);   
     }
     
+    public List<Order> getCustomerOrders (Customer cModel)
+    {
+        return ordersFacade.getCustomerOrders(cModel);
+    }
+    
     
 }

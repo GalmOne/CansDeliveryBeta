@@ -22,19 +22,19 @@ public class DiscountSessionBean implements DiscountSessionBeanLocal {
         {
             if(price < 30)
             {
-                return price * 0.95;
+                return price * 0.05;
             }
             else if(price < 75)
             {
-                return price * 0.90;
+                return price * 0.10;
             }
             else if(price < 150)
             {
-                return price * 0.85;
+                return price * 0.15;
             }
             else
             {
-                return price * 0.80;
+                return price * 0.20;
             }
         }
         else

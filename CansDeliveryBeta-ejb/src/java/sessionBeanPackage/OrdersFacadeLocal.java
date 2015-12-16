@@ -32,6 +32,7 @@ public interface OrdersFacadeLocal {
     
     public void addOrder (model.Order order);
     
+    public List<model.Order> getCustomerOrders (model.Customer cModel);
    
     
 }

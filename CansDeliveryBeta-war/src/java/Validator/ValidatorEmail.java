@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Validator;
 import ejb.SaveSessionBeanLocal;
 import javax.ejb.EJB;
@@ -28,20 +23,27 @@ public class ValidatorEmail implements Validator {
         String entry = (String) value;
                 
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("EmailNull");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorEmailNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.matches("([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)"))){
-            FacesMessage mess = new FacesMessage("EmailNotCorrect");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorEmailNotCorrect}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         Customer customer = new Customer();
+        
         customer = saveSessionBean.checkEmail(entry);
             
         if (customer.getEmail().equals(entry)) {
-            FacesMessage mess = new FacesMessage("ErrorEmailnExisted");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorEmailnExisted}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
     }   

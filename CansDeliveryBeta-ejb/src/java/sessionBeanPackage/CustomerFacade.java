@@ -156,7 +156,7 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         }
         customer.setPassword(passwordCrypt);
         
-        customer.setBirthdate(new java.sql.Date(new Date().getTime()));
+        customer.setBirthdate(c.getBirthdate());
         customer.setEmail(c.getEmail());
         customer.setGsm(c.getGsm());
         customer.setAdrNumber(c.getNumber());

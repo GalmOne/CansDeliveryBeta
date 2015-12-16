@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orders.findByNumber", query = "SELECT o FROM Orders o WHERE o.number = :number"),
     @NamedQuery(name = "Orders.findByCreationdate", query = "SELECT o FROM Orders o WHERE o.creationdate = :creationdate"),
     @NamedQuery(name = "Orders.findByRemise", query = "SELECT o FROM Orders o WHERE o.remise = :remise"),
-    @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status")})
+    @NamedQuery(name = "Orders.findByStatus", query = "SELECT o FROM Orders o WHERE o.status = :status"),
+    @NamedQuery(name = "Orders.findByCustomer", query = "SELECT o FROM Orders o WHERE o.customer = :Customer")})
 public class Orders implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

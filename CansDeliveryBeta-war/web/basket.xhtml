@@ -19,13 +19,18 @@
                     <h:form> 
                         <br>Contenu du panier : </br>
                         <br></br>
-                        <table>
+                        <c:if test="#{orderManager.listOrder.size() == 0}">
+                            Votre panier est vide ! 
+                        </c:if>
+                        <c:if test="#{orderManager.listOrder.size() > 0}">
+                            <table>
                             <tr><th></th><th>Name</th> <th>Unit price</th> <th>Quantity</th> <th> </th> <th> </th> <th> Price</th> </tr>
                             <c:forEach items="#{orderManager.listOrder}" var="item">
                                 <tr>
                                     <td><img src="#{item.value.can.picture}" width="40" height="40"/></td>
                                     <td>#{item.value.can.getTradCan().get(internationalizationMB.locale.toString()).getName()}</td>  
                                     <td>#{item.value.can.price}€</td>  
+                                    
                                     <td> <h:inputText value="#{item.value.quantity}" ></h:inputText></td> 
                                     <td><h:commandButton value = "refresh" ></h:commandButton></td> 
                                     <td><h:commandButton value = "delete" action="#{orderManager.deleteItem(item.key)}"></h:commandButton></td> 
@@ -34,11 +39,16 @@
                             </c:forEach>
                         </table>
                         <br><h:outputText value ="Total price : "></h:outputText>
-                            #{orderManager.CalculateTotalPrice()} €</br>
+                            <h:outputText value ="#{orderManager.CalculateTotalPrice()} €"> <f:convertNumber minFractionDigits="2" /></h:outputText></br>
+                        <br><h:outputText value ="Discount : "></h:outputText>
+                            <h:outputText value ="#{orderManager.discount(orderManager.CalculateTotalPrice())} €"> <f:convertNumber minFractionDigits="2" /></h:outputText></br>
                         <br><h:outputText value ="Discount price : "></h:outputText>
-                            #{orderManager.discount(orderManager.CalculateTotalPrice())} €</br>
+                            <h:outputText value ="#{orderManager.getDiscountPrice(orderManager.CalculateTotalPrice())} €"> <f:convertNumber minFractionDigits="2" /></h:outputText></br>
+           
                         <br><h:commandButton value = "Commander" action="#{orderManager.saveOrder(customerManager.getCustomerToManage(), customerManager.isConnected())}"></h:commandButton></br>
-                    </h:form>
+                            
+                        </c:if>
+                        </h:form>
                 </f:view>
                 
                     

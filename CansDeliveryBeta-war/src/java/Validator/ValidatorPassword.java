@@ -22,17 +22,23 @@ public class ValidatorPassword implements Validator {
         String entry = (String) value;
                 
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("ErrorPasswordNull");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPasswordNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (entry.length() < 5 || entry.length() > 15) {
-            FacesMessage mess = new FacesMessage("ErrorPasswordCaracters");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPasswordCaracters}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (!(entry.matches(".*(?=.{5,})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*"))){
-            FacesMessage mess = new FacesMessage("ErrorPasswordNotSecured");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPasswordNotSecured}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
     }   

@@ -42,5 +42,7 @@ public interface SaveSessionBeanLocal {
     public Customer checkEmail (String emailCheck);
     
     public void creationCustomer(Customer c);
+    
+    public List<Order> getCustomerOrders (Customer cModel);
    
 }

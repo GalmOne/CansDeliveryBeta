@@ -27,17 +27,23 @@ public class ValidatorLogin implements Validator {
         String entry = (String) value;
                 
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("ErrorLoginNull");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorLoginNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (entry.length() < 5 || entry.length() >  15){
-            FacesMessage mess = new FacesMessage("ErrorLoginCaracters");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorLoginCaracters}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (entry.equals("admin") || entry.equals("login") ) {
-            FacesMessage mess = new FacesMessage("ErrorLoginReserved");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorLoginReserved}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
@@ -45,7 +51,9 @@ public class ValidatorLogin implements Validator {
         customer = saveSessionBean.checkLogin(entry);
         
         if ((customer.getLogin().equals(entry))) {
-            FacesMessage mess = new FacesMessage("ErrorLoginExisted");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorLoginExisted}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
     }   

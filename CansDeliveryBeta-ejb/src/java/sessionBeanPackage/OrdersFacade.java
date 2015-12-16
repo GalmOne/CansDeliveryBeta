@@ -8,6 +8,8 @@ package sessionBeanPackage;
 import entityPackage.Orders;
 import entityPackage.Customer;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -57,6 +59,35 @@ public class OrdersFacade extends AbstractFacade<Orders> implements OrdersFacade
         entityOrder.setStatus(order.getStatus());
         
         create(entityOrder);             
+    }
+    
+    public List<model.Order> getCustomerOrders (model.Customer cModel)
+    {
+        List<model.Order> listOrdersModel = new ArrayList<model.Order> ();
+        Query query; 
+        
+        Customer cEntity = new Customer();
+        cEntity.setId(cModel.getId());
+        
+        query = em.createNamedQuery("Orders.findByCustomer");
+        query.setParameter("Customer", cEntity);
+        
+        List<Orders> listOrders = query.getResultList();
+        
+        for(int i =0; i<listOrders.size(); i++)
+        {
+            model.Order order = new model.Order();
+            
+            order.setNumber(listOrders.get(i).getNumber());
+            order.setRemise(listOrders.get(i).getRemise().doubleValue());
+            order.setCreationDate(listOrders.get(i).getCreationdate());
+            order.setStatus(listOrders.get(i).getStatus());
+            order.setCustomer(null);
+            
+            listOrdersModel.add(order);
+        }     
+        
+        return listOrdersModel;
     }
     
    

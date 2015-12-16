@@ -22,17 +22,23 @@ public class ValidatorString implements Validator {
         String entry = (String) value;
                 
         if (entry.length()==0) {
-            FacesMessage mess = new FacesMessage("ErrorStringNull");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorStringNull}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
         if (entry.length() < 3 || entry.length() > 20 ) {
-            FacesMessage mess = new FacesMessage("ErrorStringCaracters");
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorStringCaracters}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
         
-        if (!(entry.matches("^[a-zA-Z][a-zA-Z -]*[a-zA-Z]$"))){
-            FacesMessage mess = new FacesMessage("ErrorStringOnlyCaracters");
+        if (!(entry.matches("^[a-zàùéèëA-Z][a-zàùéèëA-Z -]*[a-zàùéèëA-Z]$"))){
+            String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorStringOnlyCaracters}", String.class);
+            
+            FacesMessage mess = new FacesMessage(msg);
             throw new ValidatorException(mess);
         }
     }   

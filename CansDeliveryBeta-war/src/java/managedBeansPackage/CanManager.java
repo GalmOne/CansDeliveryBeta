@@ -54,6 +54,21 @@ public class CanManager implements Serializable{
         return listCategoryCan;
     }
     
+    public String canDetails(Can c)
+    {
+        canToManage = c;
+        
+        return "faces/canDetails";
+    }
+
+    public Can getCanToManage() {
+        return canToManage;
+    }
+
+    public void setCanToManage(Can canToManage) {
+        this.canToManage = canToManage;
+    }
+    
     
     
 }

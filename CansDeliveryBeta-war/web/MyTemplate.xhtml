@@ -24,29 +24,35 @@
                 <f:view>
                      <h:form>
                     <img src="resources/Titre.png" width="523" height="109" alt="CansDelivery"/>
-                    <div id="someDiv" style="display:inline; text-align:right">
-                        <h:commandButton image="resources/account.png" id="buttonCompte" action="#{customerManager.checkConnexion()}" style="position:relative; margin-left: 200px"></h:commandButton>   
-                        <h:commandButton image="resources/panier.png" id="buttonPanier" action="faces/basket.xhtml" style="position:relative; margin-left:50px"></h:commandButton>
+                    <div id="divaccount" >
+                        <h:commandButton image="resources/account.png" id="buttonAccount" action="#{customerManager.checkConnexion()}" style="margin-right: 10px"></h:commandButton>
+                        <c:if test="#{customerManager.isConnected()}">
+                            <h:outputText value ="#{customerManager.customerToManage.firstname} " ></h:outputText>
+                            <h:outputText value ="#{customerManager.customerToManage.name}" style="margin-right: 400px"></h:outputText>
+                        </c:if>
+                        <h:outputText value ="#{orderManager.totalPrice} €" style="margin-right: 2px"></h:outputText>
+                        <h:commandButton image="resources/panier.png" id="buttonPanier" action="faces/basket.xhtml" ></h:commandButton>
                     </div>
                     
+                    
+                   
                 </h:form>
                 </f:view>
                
                 
                 
-                <f:view>
+               
+                    
+                    <f:view>
                     <h:form>
-                    <ul >
-                    <li id="liCategorie"><h:commandLink action="faces/index.xhtml" value="#{msg.Home}" >  </h:commandLink></li>
-                    <li id="liCategorie"><h:commandLink action="faces/listCan.xhtml" value="#{msg.AllSodas}" >  </h:commandLink></li>
-                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkSodas}">  </h:commandLink></li>
-                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkBoissonJuice }">  </h:commandLink></li>
-                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkBeer }">  </h:commandLink></li>
-                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.DrinkEnergyDrinks }">  </h:commandLink></li>
-                    <li id="liCategorie"><h:commandLink action="faces/specificCan.xhtml" value="#{msg.LimitedEdition }">  </h:commandLink></li>   
-                    </ul>
-                    </h:form>
+                        <li id="liCategorie"><h:commandLink action="faces/index.xhtml" value="#{msg.Home}" >  </h:commandLink></li>
+                        <li id="liCategorie"><h:commandLink action="faces/listCan.xhtml" value="#{msg.AllSodas}" >  </h:commandLink></li>
+                        <c:forEach items="#{drinkTypeManager.getCategories()}" var="cat">
+                            <li id="liCategorie"> <h:commandLink action="#{canManager.getCanByCategory(cat)}" value="#{cat.getTraductionType().get(internationalizationMB.locale.toString()).getDescritpion()}" >  </h:commandLink>  </li>
+                        </c:forEach>
+                    </h:form> 
                 </f:view>
+                   
 
                 
                  
@@ -56,15 +62,7 @@
         <div>
             <div id="left">
                 <ui:insert name="left">
-                    <f:view>
-                    <h:form>
-                        <li><h:commandLink action="faces/index.xhtml" value="#{msg.Home}" >  </h:commandLink></li>
-                        <li><h:commandLink action="faces/listCan.xhtml" value="#{msg.AllSodas}" >  </h:commandLink></li>
-                        <c:forEach items="#{drinkTypeManager.getCategories()}" var="cat">
-                            <li> <h:commandLink action="#{canManager.getCanByCategory(cat)}" value="#{cat.getTraductionType().get(internationalizationMB.locale.toString()).getDescritpion()}" >  </h:commandLink>  </li>
-                        </c:forEach>
-                    </h:form> 
-                </f:view>
+                    
                 </ui:insert>
             </div>
             <div id="content" class="left_content">
