@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.ejb.EJB;
+import javax.ejb.Local;
 import javax.faces.application.FacesMessage;
 import model.*;
 import javax.faces.bean.SessionScoped;
@@ -55,7 +57,7 @@ public class CustomerManager implements Serializable{
         customerToManage = saveSessionBean.getCustomer(id);
     }
     
-    public String verifyLogin()
+    public String verifyLogin(String lang)
     {
         String loginCheck = customerToManage.getLogin();
         String passwordCheck = customerToManage.getPassword();
@@ -65,7 +67,13 @@ public class CustomerManager implements Serializable{
         customer = saveSessionBean.verifyLogin(loginCheck, passwordCheck);
         
         if (customer.getName().equals("NULL")) {
-            FacesMessage message = new FacesMessage( "Erreur de login / mot de passe. ");
+            FacesMessage message;
+            if(lang.equals("fr"))
+            {
+                message = new FacesMessage( "Erreur de login / mot de passe. ");
+            }else
+                message = new FacesMessage( "Error login / password. ");
+            
             FacesContext.getCurrentInstance().addMessage( null, message );
             return null;
         } else {

@@ -69,25 +69,23 @@
                                         </td>
                                         <td>
                                         <h:inputSecret id="passwordCreation"
-                                                       value="#{customerManager.customerToManage.password}">     
+                                                       value="#{customerManager.customerToManage.password}"
+                                                       binding="#{password}">     
                                             <f:validator validatorId="ValidatorPassword"></f:validator>   
-                                            <f:validator validatorId="ValidatorPasswordSame"></f:validator>
-                                            <f:attribute name="confirm" value="#{confirm}"></f:attribute>
                                         </h:inputSecret>
                                     </td>
                                     <td>
                                         <h:message for="passwordCreation"></h:message>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <h:outputLabel value="#{msg.PasswordCheck}" for="passwordCheckLabel"></h:outputLabel>
                                     </td>
                                     <td>
-                                        <h:inputSecret id="passwordCheck"  binding="#{confirm}">
+                                        <h:inputSecret id="passwordCheck">
                                         <f:validator validatorId="ValidatorPasswordSame"></f:validator>
-                                        <f:attribute name="confirm" value="#{confirm}"></f:attribute>
+                                        <f:attribute name="password" value="#{password}"></f:attribute>
                                         </h:inputSecret>
                                     </td>
                                     <td>
