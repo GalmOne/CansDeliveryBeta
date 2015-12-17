@@ -38,7 +38,7 @@ public class ValidatorCodePostal implements Validator {
             throw new ValidatorException(mess);
         }
         
-        if (!(entry.matches("[0-9]{4}"))){
+        if (!(entry.matches("[1-9][0-9]{3}"))){
             String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorPostalOnlyNumbers}", String.class);
             
             FacesMessage mess = new FacesMessage(msg);

@@ -21,33 +21,33 @@
                         >
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Numéro de la commande</f:facet>
+                                <f:facet name="header"><h:outputText value="#{msg.OrderNumber}" ></h:outputText></f:facet>
     				<!-- row record -->
                                 #{o.number}  
     			</h:column>
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Date de création</f:facet>
+    				<f:facet name="header"><h:outputText value="#{msg.dateCreation}" ></h:outputText></f:facet>
     				<!-- row record -->
                                 #{o.creationDate.toString()}  
     			</h:column> 
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Status</f:facet>
+    				<f:facet name="header"><h:outputText value="#{msg.status}" ></h:outputText></f:facet>
     				<!-- row record -->
                                 #{o.status}  
     			</h:column> 
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Montant</f:facet>
+    				<f:facet name="header"><h:outputText value="#{msg.Montant}" ></h:outputText></f:facet>
     				<!-- row record -->
                                 #{o.remise}  
     			</h:column> 
                         <h:column>
     				<!-- column header -->
-    				<f:facet name="header">Details</f:facet>
+    				<f:facet name="header">#{msg.Details}</f:facet>
     				<!-- row record -->
-                                <h:commandButton value="Details" ></h:commandButton>
+                                <h:commandButton value="#{msg.Details}" ></h:commandButton>
     			</h:column> 
                         
                        

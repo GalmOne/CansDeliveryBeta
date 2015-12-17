@@ -36,7 +36,7 @@ public class ValidatorNumeroRue implements Validator {
             throw new ValidatorException(mess);
         }
         
-        if (!(entry.matches("[0-9]*"))){
+        if (!(entry.matches("[1-9]{1}[0-9]{0,2}[a-c]{0,1}"))){
             String msg = context.getApplication().evaluateExpressionGet(context,"#{msg.ErrorNumbersOnlyNumbers}", String.class);
             
             FacesMessage mess = new FacesMessage(msg);
